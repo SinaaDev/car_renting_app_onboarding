@@ -38,6 +38,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   hexcolor: ^3.0.1
   iconsax: ^0.0.8
+  intro_screen_onboarding_flutter: ^1.0.0
 
 
 dev_dependencies:

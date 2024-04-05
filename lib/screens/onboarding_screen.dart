@@ -4,6 +4,8 @@ import 'package:car_renting_app_onboarding/screens/page3.dart';
 import 'package:car_renting_app_onboarding/screens/page4.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:intro_screen_onboarding_flutter/circle_progress_bar.dart';
+import 'package:intro_screen_onboarding_flutter/introscreenonboarding.dart';
 
 class OnboardingScreen extends StatefulWidget {
   OnboardingScreen({super.key});
@@ -49,7 +51,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               left: 24,
               right: 24,
               bottom: 16,
-              child: Container(
+              child: SizedBox(
                 height: 60,
                 child: Row(
                   children: [
@@ -75,19 +77,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ],
                     ),
                     const Spacer(),
-                    ElevatedButton(
-                      onPressed: () {
-                        pageController.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
-                      },
-                      style: ElevatedButton.styleFrom(
-                          shape: const CircleBorder(), elevation: 0),
-                      child: Center(
-                        child: Icon(
-                          Icons.chevron_right_rounded,
-                          color: color,
-                        ),
-                      ),
-                    )
+                    _customProgress(_selectedIndex,pageController,color)
                   ],
                 ),
               ),
@@ -117,3 +107,41 @@ class AnimatedDot extends StatelessWidget {
     );
   }
 }
+
+Widget _customProgress(int currentPage,PageController pageController,Color color) {
+  return Stack(
+    alignment: Alignment.center,
+    children: [
+      SizedBox(
+        width: 80,
+        height: 80,
+        child: CircleProgressBar(
+          backgroundColor: Colors.white38,
+          foregroundColor:Colors.white,
+          value: ((currentPage) / 3),
+        ),
+      ),
+      Container(
+        height: 45,
+        width: 45,
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.white,
+        ),
+        child: IconButton(
+          onPressed: () {
+            pageController.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeInOut);
+          },
+          icon: const Icon(
+            Icons.arrow_forward_ios,
+          ),
+          iconSize: 15,
+          color: color,
+        ),
+      )
+    ],
+  );
+}
+
+
+

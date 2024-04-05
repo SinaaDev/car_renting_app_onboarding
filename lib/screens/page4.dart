@@ -26,12 +26,12 @@ class Page4 extends StatelessWidget {
                   color: Colors.white),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24),
             child: Text(
               "Choose between regular car models or exclusive ones",
               style: TextStyle(
-                  fontSize: 18, color: Colors.white.withOpacity(0.9)),
+                  fontSize: 18, color: Colors.white70),
             ),
           ),
           const SizedBox(height: 38,),

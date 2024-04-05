@@ -26,12 +26,12 @@ class Page3 extends StatelessWidget {
                   color: Colors.white),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24),
             child: Text(
               "We will pay for you, all expenses related to the car",
               style: TextStyle(
-                  fontSize: 18, color: Colors.white.withOpacity(0.9)),
+                  fontSize: 18, color: Colors.white70),
             ),
           ),
           const SizedBox(height: 38,),
