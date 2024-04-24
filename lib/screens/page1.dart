@@ -9,34 +9,36 @@ class Page1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: HexColor('#F0CF69'),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          const SizedBox(
-            height: 30,
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24),
-            child: Text(
-              "Your first car without a driver's licence",
-              style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
+      child: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: 30,
             ),
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24),
-            child: Text(
-              "Goes to meet people who just got their license",
-              style: TextStyle(
-                  fontSize: 18, color: Colors.white70),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24),
+              child: Text(
+                "Your first car without a driver's licence",
+                style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
             ),
-          ),
-          const SizedBox(height: 38,),
-          SvgPicture.asset('assets/Img_car1.svg')
-        ],
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24),
+              child: Text(
+                "Goes to meet people who just got their license",
+                style: TextStyle(
+                    fontSize: 18, color: Colors.white70),
+              ),
+            ),
+            const SizedBox(height: 38,),
+            SvgPicture.asset('assets/Img_car1.svg')
+          ],
+        ),
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:car_renting_app_onboarding/home_screen.dart';
 import 'package:car_renting_app_onboarding/screens/page1.dart';
 import 'package:car_renting_app_onboarding/screens/page2.dart';
 import 'package:car_renting_app_onboarding/screens/page3.dart';
@@ -5,10 +6,9 @@ import 'package:car_renting_app_onboarding/screens/page4.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intro_screen_onboarding_flutter/circle_progress_bar.dart';
-import 'package:intro_screen_onboarding_flutter/introscreenonboarding.dart';
 
 class OnboardingScreen extends StatefulWidget {
-  OnboardingScreen({super.key});
+  const OnboardingScreen({super.key});
 
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
@@ -34,23 +34,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: color,
-      body: SafeArea(
-        child: Stack(
-          children: [
-            PageView(
-              controller: pageController,
-              onPageChanged: (index) {
-                setState(() {
-                  _selectedIndex = index;
-                });
-              },
-              children: const [Page1(), Page2(), Page3(), Page4()],
-            ),
-            Positioned(
-              left: 24,
-              right: 24,
-              bottom: 16,
+      body: Stack(
+        children: [
+          PageView(
+            controller: pageController,
+            onPageChanged: (index) {
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
+            children: const [Page1(), Page2(), Page3(), Page4()],
+          ),
+          Positioned(
+            left: 24,
+            right: 24,
+            bottom: 16,
+            child: SafeArea(
               child: SizedBox(
                 height: 60,
                 child: Row(
@@ -77,13 +76,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ],
                     ),
                     const Spacer(),
-                    _customProgress(_selectedIndex,pageController,color)
+                    _customProgress(
+                        context, _selectedIndex, pageController, color)
                   ],
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -108,7 +108,8 @@ class AnimatedDot extends StatelessWidget {
   }
 }
 
-Widget _customProgress(int currentPage,PageController pageController,Color color) {
+Widget _customProgress(BuildContext context, int currentPage,
+    PageController pageController, Color color) {
   return Stack(
     alignment: Alignment.center,
     children: [
@@ -117,7 +118,7 @@ Widget _customProgress(int currentPage,PageController pageController,Color color
         height: 80,
         child: CircleProgressBar(
           backgroundColor: Colors.white38,
-          foregroundColor:Colors.white,
+          foregroundColor: Colors.white,
           value: ((currentPage) / 3),
         ),
       ),
@@ -130,7 +131,13 @@ Widget _customProgress(int currentPage,PageController pageController,Color color
         ),
         child: IconButton(
           onPressed: () {
-            pageController.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeInOut);
+            if (currentPage == 3) {
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (ctx) => const HomeScreen()));
+            }
+            pageController.nextPage(
+                duration: const Duration(milliseconds: 400),
+                curve: Curves.easeInOut);
           },
           icon: const Icon(
             Icons.arrow_forward_ios,
@@ -142,6 +149,3 @@ Widget _customProgress(int currentPage,PageController pageController,Color color
     ],
   );
 }
-
-
-
